@@ -1,5 +1,5 @@
 /*
-Edition 5.1 of the  114-1 Final Project  
+ Final Edition of the  114-1 Final Project  
 新增 critical numbers,critical numbers 的標示及優化 
 「、」號與 x 輸入優化
 */
@@ -64,16 +64,27 @@ int main() {
 
     // 統一輸出分析數值
     //printf("\n\n臨界點 Critical Numbers (圖中藍色): x = ");
-    if(cp.n == 0) printf(">>無臨界點 No Critical Numbers");
-    for(int i=0; i<cp.n; i++) printf("\n\n臨界點 Critical Numbers (圖中藍色): x = %.2f%s"
-		, cp.terms[i].coef, (i==cp.n-1?"":" , "));
+    if (cp.n > 0) {
+        // 只有在有臨界點的時候，才印出標題
+        printf("\n\n臨界點 Critical Numbers (圖中藍色): x = ");
+        for (int i = 0; i < cp.n; i++) {
+            printf("%.2f%s", cp.terms[i].coef, (i == cp.n - 1 ? "" : " , "));
+        }
+    } else {
+        // 如果沒有臨界點，就只印這行，不會出現上面的標題
+        printf("\n\n>>無臨界點 No Critical Numbers");
+    }
     
     //printf("\n反曲點 Inflection Points (圖中綠色): x = ");
-    if(ip.n == 0) printf("\n>>無反曲點 No Inflection Points");
-    for(int i=0; i<ip.n; i++) 
-	printf("\n反曲點 Inflection Points (圖中綠色): x = %.2f%s"
-		, ip.terms[i].coef, (i==ip.n-1?"":" , "));
-	printf("\n");
+    if (ip.n > 0) {
+        printf("\n反曲點 Inflection Points (圖中綠色): x = ");
+        for (int i = 0; i < ip.n; i++) {
+            printf("%.2f%s", ip.terms[i].coef, (i == ip.n - 1 ? "" : " , "));
+        }
+    } else {
+        printf("\n>>無反曲點 No Inflection Points");
+    }
+    printf("\n");
 
     savePolyGraph((choice == 1 ? f : res), "analysis.bmp", cp, ip);
 
