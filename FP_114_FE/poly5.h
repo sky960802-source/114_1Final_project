@@ -99,11 +99,11 @@ static Poly findPoints(Poly p, int order)
 
     for (double x = -10.0; x <= 10.0; x += 0.0001) 
 	{
-        if (fabs(evaluate(target, x)) < 0.05) 
+        if (fabs(evaluate(target, x)) < 0.005) 
 		{
             if (res.n == 0 || fabs(res.terms[res.n-1].coef - x) > 0.5) 
 			{
-                double val = (fabs(x) < 0.05) ? 0.0 : x;
+                double val = (fabs(x) < 0.005) ? 0.0 : x;
                 addTerm(&res, val, 0);
             }
         }
