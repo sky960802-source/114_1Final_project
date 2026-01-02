@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include <math.h>
+#include <math.h>
 
 // 定義圖片大小與多項式最大項數
 #define IMG_WIDTH 800
