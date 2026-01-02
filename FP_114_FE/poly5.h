@@ -12,13 +12,15 @@
 #define MAX_TERMS 100
 
 // 單一項的結構：係數 (coef) 與指數 (exp)
-typedef struct {
+typedef struct 
+{
     double coef;
     double exp;
 } Term;
 
 // 多項式結構
-typedef struct {
+typedef struct 
+{
     Term terms[MAX_TERMS];
     int n; // 目前有多少項
 } Poly;
@@ -69,7 +71,8 @@ static Poly integral(Poly p, double C)
 // 在終端機印出多項式字串
 static void printPoly(Poly p) 
 {
-    if (p.n == 0) { printf("0\n"); return; }
+    if (p.n == 0) 
+	{ printf("0\n"); return; }
     for (int i = 0; i < p.n; i++) 
 	{
         double c = p.terms[i].coef; double e = p.terms[i].exp;
@@ -87,7 +90,7 @@ static Poly findPoints(Poly p, int order)
     Poly res; initPoly(&res);
     Poly target = (order == 1) ? derivative(p) : derivative(derivative(p));
     
-    // === 修正開始：如果目標函數完全是 0，直接回傳空結果，避免誤判 ===
+    //如果目標函數完全是 0，直接回傳空結果
     if (target.n == 0) return res; 
     int isZero = 1;
     for(int k=0; k<target.n; k++) 
@@ -95,7 +98,6 @@ static Poly findPoints(Poly p, int order)
         if(fabs(target.terms[k].coef) > 0.000001) isZero = 0;
     }
     if(isZero) return res;
-    // === 修正結束 ===
 
     for (double x = -10.0; x <= 10.0; x += 0.0001) 
 	{
